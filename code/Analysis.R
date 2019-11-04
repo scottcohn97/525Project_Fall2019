@@ -18,6 +18,44 @@ life_exp_full <- read_csv("data/life_exp_full.csv")
 
 # Visualizations ----------------------------------------------------------
 
+# Top 10 life exp by country
+life_exp_full %>% 
+  arrange(desc(`Life Expectancy`)) %>%
+  slice(1:10) %>%
+  ggplot(aes(
+    x = Country, 
+    y = `Life Expectancy`,
+    fill = Country)) +
+  geom_bar(stat = 'identity') + 
+  scale_fill_d3() + 
+  coord_flip() +
+  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
+  bbc_style() + 
+  labs(
+    title = "Life Expectancy",
+    subtitle = "Top 10 Countries"
+  )
+
+# Bottom 10 life exp by country
+# life_exp_full %>% drop_na(`Life Expectancy`) %>% nrow() = 201 rows w/out NA
+life_exp_full %>% 
+  drop_na(`Life Expectancy`) %>% 
+  arrange(desc(`Life Expectancy`)) %>%
+  slice(192:201) %>%
+  ggplot(aes(
+    x = Country, 
+    y = `Life Expectancy`,
+    fill = Country)) +
+  geom_bar(stat = 'identity') + 
+  scale_fill_d3() + 
+  coord_flip() +
+  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
+  bbc_style() + 
+  labs(
+    title = "Life Expectancy",
+    subtitle = "Bottom 10 Countries"
+  )
+
 # Life exp vs Birth Rate
 life_exp_full %>% 
   ggplot(aes(x = `Birth Rate`,
