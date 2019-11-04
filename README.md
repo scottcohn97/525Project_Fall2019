@@ -1,4 +1,4 @@
-# Title: What do we think an Economist should know? 
+# Title: What are the factors affecting life expectancy of a country?
 ## Subtitle: Statistics 525 IE Project
 
 **Authors**: Scott Cohn, Ruja Kambli, Sophia Chan, Addis Gunst, Haotian Jiang, Ben Goslin
