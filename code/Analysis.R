@@ -1,17 +1,16 @@
 # Analysis
 # Scott Cohn + Ruja Kambli
 
-library(tidyverse) # duh. 
+
+library(tidyverse) # duh.
 library(ggplot2) # plotting
 library(gridExtra) # plotting options
 library(ggsci)  # plot color palette
 library(bbplot) # plot style
 library(readr) # import csv
 library(lmtest) # BP test
-
 library(MASS)
 library(faraway) # Box-Cox transform / vif
-
 
 # Import Data -------------------------------------------------------------
 life_exp_full <- read_csv("data/life_exp_full.csv")
@@ -19,143 +18,198 @@ life_exp_full <- read_csv("data/life_exp_full.csv")
 # Visualizations ----------------------------------------------------------
 
 # Top 10 life exp by country
-life_exp_full %>% 
+life_exp_full %>%
   arrange(desc(`Life Expectancy`)) %>%
   slice(1:10) %>%
-  ggplot(aes(
-    x = Country, 
-    y = `Life Expectancy`,
-    fill = Country)) +
-  geom_bar(stat = 'identity') + 
-  scale_fill_d3() + 
+  ggplot(aes(x = Country,
+             y = `Life Expectancy`)) +
+  geom_bar(stat = 'identity',
+           fill = "#1380A1") +
+  #scale_fill_d3() +
   coord_flip() +
-  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
-  bbc_style() + 
-  labs(
-    title = "Life Expectancy",
-    subtitle = "Top 10 Countries"
-  )
+  geom_hline(yintercept = 0,
+             size = 1,
+             color = "#333333") +
+  bbc_style() +
+  labs(title = "Life Expectancy",
+       subtitle = "Top 10 Countries")
 
 # Bottom 10 life exp by country
 # life_exp_full %>% drop_na(`Life Expectancy`) %>% nrow() = 201 rows w/out NA
-life_exp_full %>% 
-  drop_na(`Life Expectancy`) %>% 
+life_exp_full %>%
+  drop_na(`Life Expectancy`) %>%
   arrange(desc(`Life Expectancy`)) %>%
   slice(192:201) %>%
-  ggplot(aes(
-    x = Country, 
-    y = `Life Expectancy`,
-    fill = Country)) +
-  geom_bar(stat = 'identity') + 
-  scale_fill_d3() + 
+  ggplot(aes(x = Country,
+             y = `Life Expectancy`)) +
+  geom_bar(stat = 'identity',
+           fill = "#1380A1") +
+  #scale_fill_d3() +
   coord_flip() +
-  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
-  bbc_style() + 
-  labs(
-    title = "Life Expectancy",
-    subtitle = "Bottom 10 Countries"
-  )
+  geom_hline(yintercept = 0,
+             size = 1,
+             color = "#333333") +
+  bbc_style() +
+  labs(title = "Life Expectancy",
+       subtitle = "Bottom 10 Countries")
+
+# Distribution of Life Expectancy, Histogram
+life_exp_full %>%
+  ggplot(aes(x = `Life Expectancy`)) +
+  geom_histogram(binwidth = 5,
+                 color = "white",
+                 fill = "#1380A1") +
+  geom_hline(yintercept = 0,
+             size = 1,
+             color = "#333333") +
+  bbc_style() +
+  scale_x_continuous(
+    limits = c(40, 95),
+    breaks = seq(40, 90, by = 10),
+    labels = c("40", "50", "60", "70", "80", "90 years")
+  ) +
+  labs(title = "How life expectancy varies",
+       subtitle = "Distribution of life expectancy")
 
 # Life exp vs Birth Rate
-life_exp_full %>% 
+life_exp_full %>%
   ggplot(aes(x = `Birth Rate`,
-             y = `Life Expectancy`
-             )) + 
+             y = `Life Expectancy`)) +
   geom_point(color = "#1380A1") +
-  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
-  #scale_color_d3() + 
+  geom_hline(yintercept = 0,
+             size = 1,
+             color = "#333333") +
+  #scale_color_d3() +
   bbc_style() +
-  labs(
-    title = "How long do we expect to live?",
-    subtitle = "Birth Rate vs. Life Expectancy"
-  ) 
+  labs(title = "How long do we expect to live?",
+       subtitle = "Birth Rate vs. Life Expectancy") 
 
 # Life vs Cancer
-life_exp_full %>% 
+life_exp_full %>%
   ggplot(aes(x = `Cancer Rate`,
-             y = `Life Expectancy`
-  )) + 
+             y = `Life Expectancy`)) +
   geom_point(color = "#1380A1") +
-  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
-  #scale_color_d3() + 
+  geom_hline(yintercept = 0,
+             size = 1,
+             colour = "#333333") +
+  #scale_color_d3() +
   bbc_style() +
-  labs(
-    title = "How long do we expect to live?",
-    subtitle = "Cancer Rate vs. Life Expectancy"
-  ) 
+  labs(title = "How long do we expect to live?",
+       subtitle = "Cancer Rate vs. Life Expectancy") 
 
-# Life vs GDP 
-# TODO Turn this into a histogram binned by GDP
-life_exp_full %>% 
-  ggplot(aes(x = `GDP(US$mil)`, # figure out units
-             y = `Life Expectancy`
-  )) + 
-  geom_point(color = "#1380A1") +
-  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
-  #scale_color_d3() + 
+# GDP Distribution, Histogram
+hist(life_exp_full$GDP, col = "#1380A1")
+
+life_exp_full %>%
+  ggplot(aes(x = GDP)) +
+  geom_histogram(
+    color = "white",
+    fill = "#1380A1",
+    na.rm = TRUE,
+    bins = 40,
+    pad = TRUE
+  ) +
+  geom_hline(yintercept = 0,
+             size = 1,
+             color = "#333333") +
   bbc_style() +
-  labs(
-    title = "How long do we expect to live?",
-    subtitle = "GDP (US $ Mil.) vs. Life Expectancy"
-  ) 
+  # Convert out of scientific notation
+  # scale_x_continuous(
+  #  labels(),
+  #  breaks()
+  #)
+  labs(title = "How GDP varies",
+       subtitle = "Distribution of GDP (US $ Mil.)")
+
 
 # Life vs Heart Disease
-life_exp_full %>% 
+life_exp_full %>%
   ggplot(aes(x = `Heart Disease Rate`,
-             y = `Life Expectancy`
-  )) + 
+             y = `Life Expectancy`)) +
   geom_point(color = "#1380A1") +
-  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
-  #scale_color_d3() + 
+  geom_hline(yintercept = 0,
+             size = 1,
+             colour = "#333333") +
+  #scale_color_d3() +
   bbc_style() +
-  labs(
-    title = "How long do we expect to live?",
-    subtitle = "Heart Disease Rate vs. Life Expectancy"
-  ) 
+  labs(title = "How long do we expect to live?",
+       subtitle = "Heart Disease Rate vs. Life Expectancy")
 
+# Life vs EPI
+life_exp_full %>%
+  ggplot(aes(x = EPI,
+             y = `Life Expectancy`)) +
+  geom_point(color = "#1380A1") +
+  geom_hline(yintercept = 0,
+             size = 1,
+             colour = "#333333") +
+  #scale_color_d3() +
+  bbc_style() +
+  labs(title = "How long do we expect to live?",
+       subtitle = "EPI vs. Life Expectancy")
 # Regressions --------------------------------------------------------------
 
 model1 <- lm(`Life Expectancy` ~ `Birth Rate`, data = life_exp_full)
 summary(model1)
 
-model2 <- lm(`Life Expectancy` ~ `Birth Rate` + GDP, data = life_exp_full)
+model2 <-
+  lm(`Life Expectancy` ~ `Birth Rate` + GDP, data = life_exp_full)
 summary(model2)
 
-model3 <- lm(`Life Expectancy` ~ `Birth Rate` + `Health Expenditure`, data = life_exp_full)
+model3 <-
+  lm(`Life Expectancy` ~ `Birth Rate` + `Health Expenditure`, data = life_exp_full)
 summary(model3)
 
-model4 <- lm(`Life Expectancy` ~ `Birth Rate` + GDP + `Health Expenditure`, data = life_exp_full)
+model4 <-
+  lm(`Life Expectancy` ~ `Birth Rate` + GDP + `Health Expenditure`, data = life_exp_full)
 summary(model4)
 # Note: GDP doesn't seem to matter
 
-model5 <- lm(`Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate`, data = life_exp_full)
+model5 <-
+  lm(
+    `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate`,
+    data = life_exp_full
+  )
 summary(model5)
 
-model6 <- lm(`Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure`, data = life_exp_full)
+model6 <-
+  lm(
+    `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure`,
+    data = life_exp_full
+  )
 summary(model6)
 
-model7 <- lm(`Life Expectancy` ~ `Birth Rate` + EPI, data = life_exp_full)
+model7 <-
+  lm(`Life Expectancy` ~ `Birth Rate` + EPI, data = life_exp_full)
 summary(model7)
 
-model8 <- lm(`Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure` + EPI, data = life_exp_full)
+model8 <-
+  lm(
+    `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure` + EPI,
+    data = life_exp_full
+  )
 summary(model8)
 # Rates of Cancer and Strokes don't seem to matter. Neither do health expenditures.
 # Population and Pop Density don't seem to matter
 # EPI and stroke rate seem to matter
 
-model9 <- lm(`Life Expectancy` ~ `Birth Rate` +  `Stroke Rate` + EPI, data = life_exp_full)
+model9 <-
+  lm(`Life Expectancy` ~ `Birth Rate` +  `Stroke Rate` + EPI, data = life_exp_full)
 summary(model9)
 
-model10 <- lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
+model10 <-
+  lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
 summary(model10)
 # Has violations of assumptions (see below)
 
-model11 <- lm(log(`Life Expectancy`) ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
+model11 <-
+  lm(log(`Life Expectancy`) ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
 summary(model11)
 # Model 11 attempts to transform to log-scale -> See diagnostics; doesn't work.
 
 # Model 12 --- Box-Cox Transform
-model12 <- lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
+model12 <-
+  lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
 boxcox(model12, plotit = TRUE, lambda = seq(3.5, 5, by = 0.1))
 # Here we see that lambda = 4 is both in the confidence interval, and is extremely close to the maximum. 
 # This suggests a transformation of $\frac{y^\lamba - 1}{\lambda} = \frac{y^4 - 1}{4}$
@@ -214,7 +268,10 @@ shapiro.test(resid(model10))
 
 # Model 11 attempts to transform to log-scale
 # Fitted vs Residuals --- model11
-plot(fitted(model11), resid(model11), col = "grey", pch = 20,
+plot(fitted(model11),
+     resid(model11),
+     col = "grey",
+     pch = 20,
      xlab = "Fitted", ylab = "Residuals", main = "Data from Model 11")
 abline(h = 0, col = "darkorange", lwd = 2)
 # Looks like it has a inverse parabolic shape
@@ -226,12 +283,14 @@ bptest(model11)
 # This matches our findings with a fitted versus residuals plot.
 
 # Normality of errors
-hist(resid(model11),
-     xlab   = "Residuals",
-     main   = "Histogram of Residuals, Model 10",
-     col    = "darkorange",
-     border = "dodgerblue",
-     breaks = 20)
+hist(
+  resid(model11),
+  xlab   = "Residuals",
+  main   = "Histogram of Residuals, Model 10",
+  col    = "darkorange",
+  border = "dodgerblue",
+  breaks = 20
+)
 # It does have a rough bell shape, however, it also has a very sharp peak.
 
 # Q-Q Plot
@@ -253,8 +312,15 @@ shapiro.test(resid(model11))
 # Diagnostic Checks - Model 13 --------------------------------------------
 
 # Fitted vs Residuals
-plot(fitted(model13), resid(model13), col = "grey", pch = 20,
-     xlab = "Fitted", ylab = "Residuals", main = "Data from Model 10")
+plot(
+  fitted(model13),
+  resid(model13),
+  col = "grey",
+  pch = 20,
+  xlab = "Fitted",
+  ylab = "Residuals",
+  main = "Data from Model 10"
+)
 abline(h = 0, col = "darkorange", lwd = 2)
 # Looks random so all set
 
@@ -275,12 +341,14 @@ vif(model13)
 # All <5 so no multicollinearity problems
 
 # Normality of errors
-hist(resid(model13),
-     xlab   = "Residuals",
-     main   = "Histogram of Residuals, Model 10",
-     col    = "darkorange",
-     border = "dodgerblue",
-     breaks = 20)
+hist(
+  resid(model13),
+  xlab   = "Residuals",
+  main   = "Histogram of Residuals, Model 10",
+  col    = "darkorange",
+  border = "dodgerblue",
+  breaks = 20
+)
 # It does have a rough bell shape. Looks Good.
 
 # Q-Q Plot
@@ -291,11 +359,29 @@ qqline(resid(model13), col = "dodgerblue", lwd = 2)
 # We would probably believe the errors follow a mostly normal distribution.
 
 # Linearity 
-plot(transform_y ~ `Birth Rate`, data = life_exp_full, col = "dodgerblue", pch = 20, cex = 1.5)
+plot(
+  transform_y ~ `Birth Rate`,
+  data = life_exp_full,
+  col = "dodgerblue",
+  pch = 20,
+  cex = 1.5
+)
 # Linear (-)
 
-plot(transform_y ~ `Stroke Rate`, data = life_exp_full, col = "dodgerblue", pch = 20, cex = 1.5)
+plot(
+  transform_y ~ `Stroke Rate`,
+  data = life_exp_full,
+  col = "dodgerblue",
+  pch = 20,
+  cex = 1.5
+)
 # Linear (-)
 
-plot(transform_y ~ EPI, data = life_exp_full, col = "dodgerblue", pch = 20, cex = 1.5)
+plot(
+  transform_y ~ EPI,
+  data = life_exp_full,
+  col = "dodgerblue",
+  pch = 20,
+  cex = 1.5
+)
 # Linear (+)
