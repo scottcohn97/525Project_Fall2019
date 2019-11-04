@@ -15,9 +15,6 @@ library(magrittr)
 # Import Data -------------------------------------------------------------
 life_exp_full <- read_csv("data/life_exp_full.csv")
 
-# Convert all to numeric
-life_exp_full[] <- lapply(life_exp_full, function(x) as.numeric(as.character(x)))
-
 # Visualizations ----------------------------------------------------------
 
 # Life exp vs Birth Rate
@@ -82,13 +79,13 @@ life_exp_full %>%
 model1 <- lm(`Life Expectancy` ~ `Birth Rate`, data = life_exp_full)
 summary(model1)
 
-model2 <- lm(`Life Expectancy` ~ `Birth Rate` + `GDP(US$mil)`, data = life_exp_full)
+model2 <- lm(`Life Expectancy` ~ `Birth Rate` + GDP, data = life_exp_full)
 summary(model2)
 
 model3 <- lm(`Life Expectancy` ~ `Birth Rate` + `Health Expenditure`, data = life_exp_full)
 summary(model3)
 
-model4 <- lm(`Life Expectancy` ~ `Birth Rate` + `GDP(US$mil)` + `Health Expenditure`, data = life_exp_full)
+model4 <- lm(`Life Expectancy` ~ `Birth Rate` + GDP + `Health Expenditure`, data = life_exp_full)
 summary(model4)
 # Note: GDP doesn't seem to matter
 

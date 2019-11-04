@@ -3,27 +3,27 @@
 +--------------------+----------------------------------------------------+
 | Country            | Country Name                                       |
 +--------------------+----------------------------------------------------+
-| Birth Rate         | ?                                                  |
+| Birth Rate         | Number of births per 1,000 population              |
 +--------------------+----------------------------------------------------+
-| Cancer Rate        | ?                                                  |
+| Cancer Rate        | Death Rate Per 100,000                             |
 +--------------------+----------------------------------------------------+
 | Dengue_Cases       | # of Dengue Cases (mosquito-borne viral disease)   |
 +--------------------+----------------------------------------------------+
-| EPI                | ?                                                  |
+| EPI                | Environmental Perfomance Index                     |
 +--------------------+----------------------------------------------------+
-| GDP(US$mil)        | Gross Domestic Product, measured in USD (Millions) |
+| GDP                | Gross Domestic Product, measured in USD (Millions) |
 +--------------------+----------------------------------------------------+
-| Health Expenditure | ?                                                  |
+| Health Expenditure | Total health expenditure per capita in PPP         |                          |                    | international U.S. dollars (not inflation-adjusted)|
 +--------------------+----------------------------------------------------+
-| Heart Disease Rate | ?                                                  |
+| Heart Disease Rate | Death Rate Per 100,000                             |
 +--------------------+----------------------------------------------------+
 | Population         | Population of Country                              |
 +--------------------+----------------------------------------------------+
 | Area(km^2)         | Land Area, Square Kilometers                       |
 +--------------------+----------------------------------------------------+
-| Pop_density        | ?                                                  |
+| Pop_density        | Population / Area(km^2)                            |
 +--------------------+----------------------------------------------------+
-| Stroke Rate        | ?                                                  |
+| Stroke Rate        | Death Rate Per 100,000                             |
 +--------------------+----------------------------------------------------+
 | Life Expectancy    | Years                                              |
 +--------------------+----------------------------------------------------+
