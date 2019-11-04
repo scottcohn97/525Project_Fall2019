@@ -1,7 +1,7 @@
 # Analysis
 # Scott Cohn + Ruja Kambli
 
-# Todo create a variable dictionary with what units everything is in
+# TODO create a variable dictionary .txt with what units everything is in etc.
 
 library(tidyverse) # duh. 
 library(ggplot2) # plotting
