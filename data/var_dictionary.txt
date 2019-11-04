@@ -13,7 +13,8 @@
 +--------------------+----------------------------------------------------+
 | GDP                | Gross Domestic Product, measured in USD (Millions) |
 +--------------------+----------------------------------------------------+
-| Health Expenditure | Total health expenditure per capita in PPP         |                          |                    | international U.S. dollars (not inflation-adjusted)|
+| Health Expenditure | Total health expenditure per capita in PPP         |                          
+|                    | international U.S. dollars (not inflation-adjusted)|
 +--------------------+----------------------------------------------------+
 | Heart Disease Rate | Death Rate Per 100,000                             |
 +--------------------+----------------------------------------------------+
