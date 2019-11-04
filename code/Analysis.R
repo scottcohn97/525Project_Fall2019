@@ -122,8 +122,10 @@ boxcox(model12, plotit = TRUE, lambda = seq(3.5, 5, by = 0.1))
 # Here we see that lambda = 4 is both in the confidence interval, and is extremely close to the maximum. 
 # This suggests a transformation of $\frac{y^\lamba - 1}{\lambda} = \frac{y^4 - 1}{4}$
 
-transform_y <- ((life_exp_full$`Life Expectancy`)^3.75 - 1)/3.75
+transform_y <- ((life_exp_full$`Life Expectancy`)^4 - 1)/4
 model13 <- lm(transform_y ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
+# Solves heterosked problem. See Diagnostics.
+# Challenge: Interpreting Estimates
 
 # Diagnostic Checks - Model 10 -------------------------------------------------------
 
