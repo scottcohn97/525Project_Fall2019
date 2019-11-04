@@ -16,6 +16,20 @@ library(faraway) # Box-Cox transform / vif
 # Import Data -------------------------------------------------------------
 life_exp_full <- read_csv("data/life_exp_full.csv")
 
+
+# Data Transformations ----------------------------------------------------
+
+# Capitalize letters in Country var
+# Not perfect, but good enough
+simpleCap <- function(x) {
+  s <- strsplit(x, " ")[[1]]
+  paste(toupper(substring(s, 1,1)), substring(s, 2),
+        sep = "", collapse = " ")
+}
+
+life_exp_full <- life_exp_full %>%  
+  mutate(Country = apply(life_exp_full, 1, simpleCap))
+
 # Visualizations ----------------------------------------------------------
 
 # Top 10 life exp by country
