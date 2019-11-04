@@ -9,6 +9,7 @@ library(ggsci)  # plot color palette
 library(bbplot) # plot style
 library(readr) # import csv
 library(lmtest) # BP test
+library(scales)
 library(MASS)
 library(faraway) # Box-Cox transform / vif
 
@@ -27,9 +28,24 @@ life_exp_full %>%
            fill = "#1380A1") +
   #scale_fill_d3() +
   coord_flip() +
+  scale_y_continuous(
+    limits = c(0, 85),
+    breaks = seq(0, 80, by = 20),
+    labels = c("0", "20", "40", "60", "80 years")
+  ) +
   geom_hline(yintercept = 0,
              size = 1,
              color = "#333333") +
+  geom_label(
+    aes(label = round(`Life Expectancy`, 0)),
+    hjust = 1,
+    vjust = 0.5,
+    colour = "white",
+    fill = NA,
+    label.size = NA,
+    family = "Helvetica",
+    size = 6
+  ) +
   bbc_style() +
   labs(title = "Life Expectancy",
        subtitle = "Top 10 Countries")
@@ -46,9 +62,24 @@ life_exp_full %>%
            fill = "#1380A1") +
   #scale_fill_d3() +
   coord_flip() +
+  scale_y_continuous(
+    limits = c(0, 85),
+    breaks = seq(0, 80, by = 20),
+    labels = c("0", "20", "40", "60", "80 years")
+  ) +
   geom_hline(yintercept = 0,
              size = 1,
              color = "#333333") +
+  geom_label(
+    aes(label = round(`Life Expectancy`, 0)),
+    hjust = 1,
+    vjust = 0.5,
+    colour = "white",
+    fill = NA,
+    label.size = NA,
+    family = "Helvetica",
+    size = 6
+  ) +
   bbc_style() +
   labs(title = "Life Expectancy",
        subtitle = "Bottom 10 Countries")
@@ -106,21 +137,15 @@ life_exp_full %>%
     color = "white",
     fill = "#1380A1",
     na.rm = TRUE,
-    bins = 40,
-    pad = TRUE
+    bins = 40
   ) +
   geom_hline(yintercept = 0,
              size = 1,
              color = "#333333") +
   bbc_style() +
-  # Convert out of scientific notation
-  # scale_x_continuous(
-  #  labels(),
-  #  breaks()
-  #)
+  scale_x_continuous(labels = scales::comma) + 
   labs(title = "How GDP varies",
        subtitle = "Distribution of GDP (US $ Mil.)")
-
 
 # Life vs Heart Disease
 life_exp_full %>%
