@@ -1,8 +1,6 @@
 # Analysis
 # Scott Cohn + Ruja Kambli
 
-# TODO create a variable dictionary .txt with what units everything is in etc.
-
 library(tidyverse) # duh. 
 library(ggplot2) # plotting
 library(gridExtra) # plotting options
