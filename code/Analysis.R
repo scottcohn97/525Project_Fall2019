@@ -197,8 +197,10 @@ model_full <- lm(
 )
 
 model_red <-
-  lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
+  lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = model_full$model)
 # Has violations of assumptions (see below)
+# Note: data = model_full$model in reduced 
+#    model to avoid "models were not all fitted to the same size of dataset" error in ANOVA
 
 model_red_log <-
   lm(log(`Life Expectancy`) ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
@@ -230,10 +232,10 @@ model_bc_red_transform <- lm(transform_bc_red_y ~ `Birth Rate` + `Stroke Rate` +
 
 # Testing Model Fit -------------------------------------------------------
 
-# TODO Find the model that fits best.
-
-
-
+# compare model full and model reduced.
+anova(model_red, model_full)
+# F = 0.8399
+# Pr(>F) = 0.5018
 
 # Diagnostic Checks - Model Full -------------------------------------------
 
