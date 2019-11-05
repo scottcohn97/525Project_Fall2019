@@ -1,6 +1,8 @@
 # Analysis
 # Scott Cohn + Ruja Kambli
 
+# This file is structured in collapsible sections. 
+
 # Libraries ---------------------------------------------------------------
 
 library(tidyverse) # duh.
