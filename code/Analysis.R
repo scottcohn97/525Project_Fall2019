@@ -36,7 +36,7 @@ life_exp_full <- life_exp_full %>%
 # Visualizations ----------------------------------------------------------
 
 # Top 10 life exp by country
-life_exp_full %>%
+topten_lifeexp_country <- life_exp_full %>%
   arrange(desc(`Life Expectancy`)) %>%
   slice(1:10) %>%
   ggplot(aes(x = Country,
@@ -67,9 +67,17 @@ life_exp_full %>%
   labs(title = "Life Expectancy",
        subtitle = "Top 10 Countries")
 
+# Save graph
+finalise_plot(plot_name = topten_lifeexp_country,
+              source = "Source: JNYH/Project Luther",
+              save_filepath = "figures/topten_lifeexp_country.pdf",
+              width_pixels = 640,
+              height_pixels = 450)
+              #logo_image_path = "placeholder.png")
+
 # Bottom 10 life exp by country
 # life_exp_full %>% drop_na(`Life Expectancy`) %>% nrow() = 201 rows w/out NA
-life_exp_full %>%
+bottomten_lifeexp_country <- life_exp_full %>%
   drop_na(`Life Expectancy`) %>%
   arrange(desc(`Life Expectancy`)) %>%
   slice(192:201) %>%
@@ -101,8 +109,16 @@ life_exp_full %>%
   labs(title = "Life Expectancy",
        subtitle = "Bottom 10 Countries")
 
+# Save graph
+finalise_plot(plot_name = bottomten_lifeexp_country,
+              source = "Source: JNYH/Project Luther",
+              save_filepath = "figures/bottomten_lifeexp_country.pdf",
+              width_pixels = 640,
+              height_pixels = 450)
+#logo_image_path = "placeholder.png")
+
 # Distribution of Life Expectancy, Histogram
-life_exp_full %>%
+lifeexp_distro <- life_exp_full %>%
   ggplot(aes(x = `Life Expectancy`)) +
   geom_histogram(binwidth = 5,
                  color = "white",
@@ -118,6 +134,14 @@ life_exp_full %>%
   ) +
   labs(title = "How life expectancy varies",
        subtitle = "Distribution of life expectancy")
+
+# Save graph
+finalise_plot(plot_name = lifeexp_distro,
+              source = "Source: JNYH/Project Luther",
+              save_filepath = "figures/lifeexp_distro.pdf",
+              width_pixels = 640,
+              height_pixels = 450)
+#logo_image_path = "placeholder.png")
 
 # Life exp vs Birth Rate
 life_exp_full %>%
@@ -148,7 +172,7 @@ life_exp_full %>%
 # GDP Distribution, Histogram
 hist(life_exp_full$GDP, col = "#1380A1")
 
-life_exp_full %>%
+GDP_distro <- life_exp_full %>%
   ggplot(aes(x = GDP)) +
   geom_histogram(
     color = "white",
@@ -163,6 +187,14 @@ life_exp_full %>%
   scale_x_continuous(labels = scales::comma) + 
   labs(title = "How GDP varies",
        subtitle = "Distribution of GDP (US $ Mil.)")
+
+# Save graph
+finalise_plot(plot_name = GDP_distro,
+              source = "Source: JNYH/Project Luther",
+              save_filepath = "figures/GDP_distro.pdf",
+              width_pixels = 640,
+              height_pixels = 450)
+#logo_image_path = "placeholder.png")
 
 # Life vs Heart Disease
 life_exp_full %>%
@@ -236,6 +268,7 @@ model_bc_red_transform <- lm(transform_bc_red_y ~ `Birth Rate` + `Stroke Rate` +
 anova(model_red, model_full)
 # F = 0.8399
 # Pr(>F) = 0.5018
+# Failed to reject H0: that removed var are zero.
 
 # Diagnostic Checks - Model Full -------------------------------------------
 
