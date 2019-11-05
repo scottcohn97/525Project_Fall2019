@@ -1,6 +1,7 @@
 # Analysis
 # Scott Cohn + Ruja Kambli
 
+# Libraries ---------------------------------------------------------------
 
 library(tidyverse) # duh.
 library(ggplot2) # plotting
@@ -9,7 +10,7 @@ library(ggsci)  # plot color palette
 library(bbplot) # plot style
 library(readr) # import csv
 library(lmtest) # BP test
-library(scales)
+library(scales) # Scale x-axis
 library(MASS)
 library(faraway) # Box-Cox transform / vif
 
@@ -192,28 +193,35 @@ model_full <- lm(
   `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure` + EPI + GDP,
   data = life_exp_full
 )
-summary(model_full)
-anova(model_full)
 
 model_red <-
   lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
-summary(model_red)
 # Has violations of assumptions (see below)
 
 model_red_log <-
   lm(log(`Life Expectancy`) ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
-summary(model_red_log)
-# Model 11 attempts to transform to log-scale -> See diagnostics; doesn't work.
+# Model Reduced Log attempts to transform to log-scale -> See diagnostics; doesn't work.
 
-# Model BC --- Box-Cox Transform
-model_bc <-
+# Model BC Full --- Box-Cox Full Transform
+boxcox(model_full, plotit = TRUE, lambda = seq(3, 5, by = 0.1))
+transform_bc_y <- ((life_exp_full$`Life Expectancy`)^4.4 - 1)/4.5
+model_bc_full_transform <-
+  lm(
+    transform_bc_y ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure` + EPI + GDP,
+    data = life_exp_full
+  )
+# Here we see that lambda = 4.5 is both in the confidence interval, and is extremely close to the maximum. 
+# This suggests a transformation of $\frac{y^\lamba - 1}{\lambda} = \frac{y^4.5 - 1}{4.5}$
+
+# Model BC Reduced --- Box-Cox Reduced Transform 
+model_bc_red <-
   lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
-boxcox(model_bc, plotit = TRUE, lambda = seq(3.5, 5, by = 0.1))
+boxcox(model_bc_red, plotit = TRUE, lambda = seq(3.5, 5, by = 0.1))
 # Here we see that lambda = 4 is both in the confidence interval, and is extremely close to the maximum. 
 # This suggests a transformation of $\frac{y^\lamba - 1}{\lambda} = \frac{y^4 - 1}{4}$
 
-transform_y <- ((life_exp_full$`Life Expectancy`)^4 - 1)/4
-model_bc_transform <- lm(transform_y ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
+transform_bc_red_y <- ((life_exp_full$`Life Expectancy`)^4 - 1)/4
+model_bc_red_transform <- lm(transform_bc_red_y ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
 # Solves heterosked problem. See Diagnostics.
 # Challenge: Interpreting Estimates
 
@@ -225,42 +233,92 @@ model_bc_transform <- lm(transform_y ~ `Birth Rate` + `Stroke Rate` + EPI, data 
 
 
 
+# Diagnostic Checks - Model Full -------------------------------------------
+
+# TODO Check for multicollinearity
+# TODO Check for autocorrelation
+# TODO Check for linearity
+# TODO Check for constant variance
+
+# Model Summary and ANOVA
+summary(model_full)
+anova(model_full)
+
+# Fitted vs Residuals --- model_full
+plot(fitted(model_full), resid(model_full), col = "grey", pch = 20,
+     xlab = "Fitted", ylab = "Residuals", main = "Data from Model Full")
+abline(h = 0, col = "darkorange", lwd = 2)
+# Looks like it has a inverse parabolic shape
+
+# Breusch-Pagan Test for Homoskedasticity
+bptest(model_red)
+# For model_red we see a small p-value, so we reject the null hypothesis of 
+#     homoskedasticity is rejected and heteroskedasticity assumed.
+# The constant variance assumption is violated. 
+# This matches our findings with a fitted versus residuals plot.
+
+# Normality of errors
+hist(resid(model_full),
+     xlab   = "Residuals",
+     main   = "Histogram of Residuals, Model Full",
+     col    = "darkorange",
+     border = "dodgerblue",
+     breaks = 20)
+# It does have a rough bell shape, however, it also has a semi-sharp peak.
+
+# Q-Q Plot
+qqnorm(resid(model_full), main = "Normal Q-Q Plot, Model Full", col = "darkgrey")
+qqline(resid(model_full), col = "dodgerblue", lwd = 2)
+# Deviates in smaller quantiles
+# For Model Full, we have a suspect Q-Q plot. 
+# We would probably not believe the errors follow a normal distribution.
+
+
+# Shapiro-Wilk Test
+shapiro.test(resid(model_full))
+# p = 7.152e-05
+# A small p-value indicates we believe there is only a small probability 
+# the data could have been sampled from a normal distribution.
+
+
 
 # Diagnostic Checks - Model Reduced -------------------------------------------------------
 
 # TODO Check for multicollinearity
 # TODO Check for autocorrelation
 # TODO Check for linearity
-
-
 # TODO Check for constant variance
+
+# Model Summary and ANOVA
+summary(model_red)
+anova(model_red)
 
 # Fitted vs Residuals --- model_red
 plot(fitted(model_red), resid(model_red), col = "grey", pch = 20,
-     xlab = "Fitted", ylab = "Residuals", main = "Data from Model 10")
+     xlab = "Fitted", ylab = "Residuals", main = "Data from Model Reduced")
 abline(h = 0, col = "darkorange", lwd = 2)
 # Looks like it has a inverse parabolic shape
 
 # Breusch-Pagan Test for Homoskedasticity
 bptest(model_red)
-# For model_red we see a small p-value, so we reject the null of homoscedasticity. 
+# For model_red we see a small p-value, so we reject the null of homoskedasticity. 
 # The constant variance assumption is violated. 
 # This matches our findings with a fitted versus residuals plot.
 
 # Normality of errors
 hist(resid(model_red),
      xlab   = "Residuals",
-     main   = "Histogram of Residuals, Model 10",
+     main   = "Histogram of Residuals, Model Reduced",
      col    = "darkorange",
      border = "dodgerblue",
      breaks = 20)
 # It does have a rough bell shape, however, it also has a very sharp peak.
 
 # Q-Q Plot
-qqnorm(resid(model_red), main = "Normal Q-Q Plot, Model 10", col = "darkgrey")
+qqnorm(resid(model_red), main = "Normal Q-Q Plot, Model Reduced", col = "darkgrey")
 qqline(resid(model_red), col = "dodgerblue", lwd = 2)
 # Deviates in smaller quantiles
-# For Model 10, we have a suspect Q-Q plot. 
+# For Model Reduced, we have a suspect Q-Q plot. 
 # We would probably not believe the errors follow a normal distribution.
 
 
@@ -271,7 +329,11 @@ shapiro.test(resid(model_red))
 # the data could have been sampled from a normal distribution.
 
 
-# Diagnostic Checks - Model Full --------------------------------------------
+# Diagnostic Checks - Model Reduced Log --------------------------------------------
+
+# Model Summary and ANOVA
+summary(model_red_log)
+anova(model_red_log)
 
 # Model Reduced Log attempts to transform to log-scale
 # Fitted vs Residuals --- model_red_log
@@ -279,7 +341,7 @@ plot(fitted(model_red_log),
      resid(model_red_log),
      col = "grey",
      pch = 20,
-     xlab = "Fitted", ylab = "Residuals", main = "Data from Model 11")
+     xlab = "Fitted", ylab = "Residuals", main = "Data from Model Reduced Log")
 abline(h = 0, col = "darkorange", lwd = 2)
 # Looks like it has a inverse parabolic shape
 
@@ -301,7 +363,7 @@ hist(
 # It does have a rough bell shape, however, it also has a very sharp peak.
 
 # Q-Q Plot
-qqnorm(resid(model_red_log), main = "Normal Q-Q Plot, Model 11", col = "darkgrey")
+qqnorm(resid(model_red_log), main = "Normal Q-Q Plot, Model Reduced Log", col = "darkgrey")
 qqline(resid(model_red_log), col = "dodgerblue", lwd = 2)
 # Deviates in smaller quantiles
 # For Model 11, we have a suspect Q-Q plot. 
@@ -313,15 +375,16 @@ shapiro.test(resid(model_red_log))
 # A small p-value indicates we believe there is only a small probability 
 # the data could have been sampled from a normal distribution.
 
+# Diagnostic Checks - Model Box Cox Full Transform -----------------------------
 
-
-
-# Diagnostic Checks - Model Box Cox Transform -----------------------------
+# Model Summary and ANOVA
+summary(model_bc_full_transform)
+anova(model_bc_full_transform)
 
 # Fitted vs Residuals
 plot(
-  fitted(model_bc_transform),
-  resid(model_bc_transform),
+  fitted(model_bc_full_transform),
+  resid(model_bc_full_transform),
   col = "grey",
   pch = 20,
   xlab = "Fitted",
@@ -332,24 +395,26 @@ abline(h = 0, col = "darkorange", lwd = 2)
 # Looks random so all set
 
 # Breusch-Pagan
-bptest(model_bc_transform)
-# pass
+bptest(model_bc_full_transform)
+# pass -- FTR null of homosked.
 
 # Shapiro-Wilks
-shapiro.test(resid(model_bc_transform))
+shapiro.test(resid(model_bc_full_transform))
 # pass
+# A large p-value indicates we believe it is likely
+# the data could have been sampled from a normal distribution.
 
 # Box-cox
-boxcox(model_bc_transform)
+boxcox(model_bc_full_transform)
 # pass
 
 # Variation Inflation Factor
-vif(model_bc_transform)
+vif(model_bc_full_transform)
 # All <5 so no multicollinearity problems
 
 # Normality of errors
 hist(
-  resid(model_bc_transform),
+  resid(model_bc_full_transform),
   xlab   = "Residuals",
   main   = "Histogram of Residuals, Model 10",
   col    = "darkorange",
@@ -359,15 +424,15 @@ hist(
 # It does have a rough bell shape. Looks Good.
 
 # Q-Q Plot
-qqnorm(resid(model_bc_transform), main = "Normal Q-Q Plot, Model 13", col = "darkgrey")
-qqline(resid(model_bc_transform), col = "dodgerblue", lwd = 2)
+qqnorm(resid(model_bc_full_transform), main = "Normal Q-Q Plot, Model Box Cox Full", col = "darkgrey")
+qqline(resid(model_bc_full_transform), col = "dodgerblue", lwd = 2)
 # Deviates in slightly smaller quantiles
-# For Model 13, we have an okay Q-Q plot. 
+# For Model BC, we have an okay Q-Q plot. 
 # We would probably believe the errors follow a mostly normal distribution.
 
 # Linearity 
 plot(
-  transform_y ~ `Birth Rate`,
+  transform_bc_y ~ `Birth Rate`,
   data = life_exp_full,
   col = "dodgerblue",
   pch = 20,
@@ -376,7 +441,81 @@ plot(
 # Linear (-)
 
 plot(
-  transform_y ~ `Stroke Rate`,
+  transform_bc_y ~ `Stroke Rate`,
+  data = life_exp_full,
+  col = "dodgerblue",
+  pch = 20,
+  cex = 1.5
+)
+# Linear (-) ish --- looks like it flairs out
+
+plot(
+  transform_bc_y ~ EPI,
+  data = life_exp_full,
+  col = "dodgerblue",
+  pch = 20,
+  cex = 1.5
+)
+# Linear (+)
+
+# Diagnostic Checks - Model Box Cox Reduced Transform -----------------------------
+
+# Model Summary and ANOVA
+summary(model_bc_red_transform)
+anova(model_bc_red_transform)
+
+# Fitted vs Residuals
+plot(
+  fitted(model_bc_red_transform),
+  resid(model_bc_red_transform),
+  col = "grey",
+  pch = 20,
+  xlab = "Fitted",
+  ylab = "Residuals",
+  main = "Data from Model 10"
+)
+abline(h = 0, col = "darkorange", lwd = 2)
+# Looks random so all set
+
+# Breusch-Pagan
+bptest(model_bc_red_transform)
+# pass -- FTR null of homosked.
+
+# Shapiro-Wilks
+shapiro.test(resid(model_bc_red_transform))
+# pass
+# A large p-value indicates we believe it is likely
+# the data could have been sampled from a normal distribution.
+
+# Box-cox
+boxcox(model_bc_red_transform)
+# pass
+
+# Variation Inflation Factor
+vif(model_bc_red_transform)
+# All <5 so no multicollinearity problems
+
+# Normality of errors
+hist(
+  resid(model_bc_red_transform),
+  xlab   = "Residuals",
+  main   = "Histogram of Residuals, Model 10",
+  col    = "darkorange",
+  border = "dodgerblue",
+  breaks = 20
+)
+# It does have a rough bell shape. Looks Good.
+
+# Q-Q Plot
+qqnorm(resid(model_bc_red_transform), main = "Normal Q-Q Plot, Model 13", col = "darkgrey")
+qqline(resid(model_bc_red_transform), col = "dodgerblue", lwd = 2)
+# Deviates in slightly smaller quantiles
+# For Model BC, we have an okay Q-Q plot. 
+# We would probably believe the errors follow a mostly normal distribution.
+
+# Linearity 
+plot(
+  transform_bc_red_y ~ `Birth Rate`,
   data = life_exp_full,
   col = "dodgerblue",
   pch = 20,
@@ -385,10 +524,35 @@ plot(
 # Linear (-)
 
 plot(
-  transform_y ~ EPI,
+  transform_bc_red_y ~ `Stroke Rate`,
   data = life_exp_full,
   col = "dodgerblue",
   pch = 20,
   cex = 1.5
 )
+# Linear (-) ish --- looks like it flairs out
+
+plot(
+  transform_bc_red_y ~ EPI,
+  data = life_exp_full,
+  col = "dodgerblue",
+  pch = 20,
+  cex = 1.5
+)
+# Linear (+)
+
+
+
+
+# End of File -------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 # Linear (+)
