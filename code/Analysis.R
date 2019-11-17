@@ -272,11 +272,6 @@ anova(model_red, model_full)
 
 # Diagnostic Checks - Model Full -------------------------------------------
 
-# TODO Check for multicollinearity
-# TODO Check for autocorrelation
-# TODO Check for linearity
-# TODO Check for constant variance
-
 # Model Summary and ANOVA
 summary(model_full)
 anova(model_full)
@@ -320,11 +315,6 @@ shapiro.test(resid(model_full))
 
 
 # Diagnostic Checks - Model Reduced -------------------------------------------------------
-
-# TODO Check for multicollinearity
-# TODO Check for autocorrelation
-# TODO Check for linearity
-# TODO Check for constant variance
 
 # Model Summary and ANOVA
 summary(model_red)
