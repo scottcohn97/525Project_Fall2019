@@ -4,7 +4,7 @@
 # This file is structured in collapsible sections. 
 
 # Libraries ---------------------------------------------------------------
-#
+
 library(tidyverse) # duh.
 library(ggplot2) # plotting
 library(gridExtra) # plotting options
@@ -416,7 +416,7 @@ plot(
   pch = 20,
   xlab = "Fitted",
   ylab = "Residuals",
-  main = "Data from Model 10"
+  main = "Data, Model Box Cox Full"
 )
 abline(h = 0, col = "darkorange", lwd = 2)
 # Looks random so all set
@@ -443,7 +443,7 @@ vif(model_bc_full_transform)
 hist(
   resid(model_bc_full_transform),
   xlab   = "Residuals",
-  main   = "Histogram of Residuals, Model 10",
+  main   = "Histogram of Residuals, Model Box Cox Full",
   col    = "darkorange",
   border = "dodgerblue",
   breaks = 20
