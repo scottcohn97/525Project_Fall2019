@@ -3,18 +3,25 @@
 
 # This file is structured in collapsible sections. 
 
+# plot indiv value vs e to transofrom indiv variable
+
 # Libraries ---------------------------------------------------------------
 
 library(tidyverse) # duh.
 library(ggplot2) # plotting
 library(gridExtra) # plotting options
 library(ggsci)  # plot color palette
+library(ggthemes) # Themes
 library(bbplot) # plot style
 library(readr) # import csv
 library(lmtest) # BP test
 library(scales) # Scale x-axis
 library(MASS)
 library(faraway) # Box-Cox transform / vif
+
+# Colors
+COLA <- c("#99d8c9","#66c2a4","#41ae76", "#238b45", "#005824")
+COLB <- c("#4eb3d3", "#2b8cbe", "#0868ac","#084081")
 
 # Import Data -------------------------------------------------------------
 life_exp_full <- read_csv("data/life_exp_full.csv")
@@ -221,6 +228,87 @@ life_exp_full %>%
   bbc_style() +
   labs(title = "How long do we expect to live?",
        subtitle = "EPI vs. Life Expectancy")
+
+
+# Plot Variables v Life Expectancy ----------------------------------------
+
+# Birth
+life_exp_full %>% 
+  ggplot() +
+  geom_point(
+    aes(y = `Life Expectancy`, x = `Birth Rate`), 
+    color = COLA[3]) +
+  theme_clean()
+
+hist(life_exp_full$`Birth Rate`,
+     xlab   = "Birth Rate",
+     main   = "Histogram of Birth Rate",
+     col    = "dodgerblue",
+     border = "black",
+     breaks = 20)
+
+# Cancer
+life_exp_full %>% 
+  ggplot() +
+  geom_point(
+    aes(y = `Life Expectancy`, x = `Cancer Rate`), 
+    color = COLA[3]) +
+  theme_clean()
+
+hist(life_exp_full$`Cancer Rate`,
+     xlab   = "Cancer Disease",
+     main   = "Histogram of Cancer Disease",
+     col    = "dodgerblue",
+     border = "black",
+     breaks = 20)
+
+# Heart Disease
+life_exp_full %>% 
+  ggplot() +
+  geom_point(
+    aes(y = `Life Expectancy`, x = `Heart Disease Rate`), 
+    color = COLA[3]) +
+  theme_clean()
+
+hist(life_exp_full$`Heart Disease Rate`,
+     xlab   = "Heart Disease",
+     main   = "Histogram of Heart Disease",
+     col    = "dodgerblue",
+     border = "black",
+     breaks = 20)
+
+# Stroke
+life_exp_full %>% 
+  ggplot() +
+  geom_point(
+    aes(y = `Life Expectancy`, x = `Stroke Rate`), 
+    color = COLA[3]) +
+  theme_clean()
+
+# Health Expenditure
+life_exp_full %>% 
+  ggplot() +
+  geom_point(
+    aes(y = `Life Expectancy`, x = `Health Expenditure`), 
+    color = COLA[3]) +
+  theme_clean()
+
+# EPI
+life_exp_full %>% 
+  ggplot() +
+  geom_point(
+    aes(y = `Life Expectancy`, x = EPI), 
+    color = COLA[3]) +
+  theme_clean()
+
+# GDP
+life_exp_full %>% 
+  ggplot() +
+  geom_point(
+    aes(y = `Life Expectancy`, x = GDP), 
+    color = COLA[3]) +
+  theme_clean()
+
 # Regressions --------------------------------------------------------------
 
 model_full <- lm(
@@ -275,6 +363,7 @@ anova(model_red, model_full)
 # Model Summary and ANOVA
 summary(model_full)
 anova(model_full)
+
 
 # Fitted vs Residuals --- model_full
 plot(fitted(model_full), resid(model_full), col = "grey", pch = 20,
