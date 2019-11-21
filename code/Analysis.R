@@ -4,7 +4,9 @@
 # This file is structured in collapsible sections. 
 
 # plot indiv value vs e to transofrom indiv variable
-# Try again without outliers
+# Try again without outliers (remove China / US)
+# Drop Cancer
+# Recheck heart disease
 
 # Libraries ---------------------------------------------------------------
 
@@ -373,8 +375,8 @@ abline(h = 0, col = "darkorange", lwd = 2)
 # Looks like it has a inverse parabolic shape
 
 # Breusch-Pagan Test for Homoskedasticity
-bptest(model_red)
-# For model_red we see a small p-value, so we reject the null hypothesis of 
+bptest(model_full)
+# For model_full we see a small p-value, so we reject the null hypothesis of 
 #     homoskedasticity is rejected and heteroskedasticity assumed.
 # The constant variance assumption is violated. 
 # This matches our findings with a fitted versus residuals plot.
@@ -401,7 +403,6 @@ shapiro.test(resid(model_full))
 # p = 7.152e-05
 # A small p-value indicates we believe there is only a small probability 
 # the data could have been sampled from a normal distribution.
-
 
 
 # Diagnostic Checks - Model Reduced -------------------------------------------------------
