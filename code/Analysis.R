@@ -315,7 +315,7 @@ life_exp_full %>%
 # Regressions --------------------------------------------------------------
 
 model_full <- lm(
-  `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure` + EPI + GDP,
+  `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Dengue Cases`  + `Health Expenditure` + EPI + GDP,
   data = life_exp_full
 )
 
