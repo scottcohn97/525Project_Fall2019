@@ -4,6 +4,7 @@
 # This file is structured in collapsible sections. 
 
 # plot indiv value vs e to transofrom indiv variable
+# Try again without outliers
 
 # Libraries ---------------------------------------------------------------
 
