@@ -1,0 +1,39 @@
+
+Descriptive statistics/selected variables
+================================================
+                         Dependent variable:    
+                     ---------------------------
+                          `Life Expectancy`     
+------------------------------------------------
+`Birth Rate`                  -0.42***          
+                               (0.04)           
+                                                
+`Cancer Rate`                   -0.02           
+                               (0.01)           
+                                                
+`Heart Disease Rate`            0.002           
+                               (0.01)           
+                                                
+`Stroke Rate`                 -0.06***          
+                               (0.01)           
+                                                
+`Health Expenditure`           -0.0002          
+                              (0.0003)          
+                                                
+EPI                            0.18***          
+                               (0.04)           
+                                                
+GDP                            0.0000           
+                              (0.0000)          
+                                                
+Constant                      76.37***          
+                               (2.96)           
+                                                
+------------------------------------------------
+Observations                     164            
+R2                              0.83            
+Adjusted R2                     0.83            
+Residual Std. Error        3.55 (df = 156)      
+F Statistic            110.82*** (df = 7; 156)  
+================================================
+Note:                *p<0.1; **p<0.05; ***p<0.01
