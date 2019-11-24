@@ -4,9 +4,9 @@
 # This file is structured in collapsible sections. 
 
 # plot indiv value vs e to transofrom indiv variable
-# Try again without outliers (remove China / US)
-# Drop Cancer
-# Recheck heart disease
+# Try again without outliers (remove China / US) --> MAKES NO DIFFERENCE!
+# Drop Cancer --> MAKES NO DIFFERENCE! 
+# Recheck heart disease --> MAKES NO DIFFERENCE! 
 
 # Libraries ---------------------------------------------------------------
 
@@ -28,7 +28,6 @@ COLB <- c("#4eb3d3", "#2b8cbe", "#0868ac","#084081")
 
 # Import Data -------------------------------------------------------------
 life_exp_full <- read_csv("data/life_exp_full.csv")
-
 
 # Data Transformations ----------------------------------------------------
 
@@ -315,23 +314,22 @@ life_exp_full %>%
 # Regressions --------------------------------------------------------------
 
 model_full <- lm(
-  `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Dengue Cases`  + `Health Expenditure` + EPI + GDP,
+  `Life Expectancy` ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` +  `Health Expenditure` + EPI + GDP,
   data = life_exp_full
 )
 
-model_red <-
-  lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = model_full$model)
+model_red <- lm(
+    `Life Expectancy` ~ `Birth Rate` + `Stroke Rate` +  `Health Expenditure` + EPI + GDP,
+    data = model_full$model)
 # Has violations of assumptions (see below)
 # Note: data = model_full$model in reduced 
 #    model to avoid "models were not all fitted to the same size of dataset" error in ANOVA
 
-model_red_log <-
-  lm(log(`Life Expectancy`) ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
-# Model Reduced Log attempts to transform to log-scale -> See diagnostics; doesn't work.
 
 # Model BC Full --- Box-Cox Full Transform
 boxcox(model_full, plotit = TRUE, lambda = seq(3, 5, by = 0.1))
 transform_bc_y <- ((life_exp_full$`Life Expectancy`)^4.4 - 1)/4.5
+
 model_bc_full_transform <-
   lm(
     transform_bc_y ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure` + EPI + GDP,
@@ -339,19 +337,6 @@ model_bc_full_transform <-
   )
 # Here we see that lambda = 4.5 is both in the confidence interval, and is extremely close to the maximum. 
 # This suggests a transformation of $\frac{y^\lamba - 1}{\lambda} = \frac{y^4.5 - 1}{4.5}$
-
-# Model BC Reduced --- Box-Cox Reduced Transform 
-model_bc_red <-
-  lm(`Life Expectancy` ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
-boxcox(model_bc_red, plotit = TRUE, lambda = seq(3.5, 5, by = 0.1))
-# Here we see that lambda = 4 is both in the confidence interval, and is extremely close to the maximum. 
-# This suggests a transformation of $\frac{y^\lamba - 1}{\lambda} = \frac{y^4 - 1}{4}$
-
-transform_bc_red_y <- ((life_exp_full$`Life Expectancy`)^4 - 1)/4
-model_bc_red_transform <- lm(transform_bc_red_y ~ `Birth Rate` + `Stroke Rate` + EPI, data = life_exp_full)
-# Solves heterosked problem. See Diagnostics.
-# Challenge: Interpreting Estimates
-
 
 # Testing Model Fit -------------------------------------------------------
 
@@ -363,16 +348,25 @@ anova(model_red, model_full)
 
 # Diagnostic Checks - Model Full -------------------------------------------
 
+
 # Model Summary and ANOVA
 summary(model_full)
 anova(model_full)
 
+# 1 The regression function is linear (the relationship is linear).
+# Yes 
+vif(model_full)
+
+# 2 The error terms have a constant variance
 
 # Fitted vs Residuals --- model_full
 plot(fitted(model_full), resid(model_full), col = "grey", pch = 20,
-     xlab = "Fitted", ylab = "Residuals", main = "Data from Model Full")
+     xlab = "Fitted", ylab = "Residuals", main = "Data from Full Model")
 abline(h = 0, col = "darkorange", lwd = 2)
 # Looks like it has a inverse parabolic shape
+
+
+# 3 The error terms are independent (there is no relationship among the error terms).
 
 # Breusch-Pagan Test for Homoskedasticity
 bptest(model_full)
@@ -381,28 +375,32 @@ bptest(model_full)
 # The constant variance assumption is violated. 
 # This matches our findings with a fitted versus residuals plot.
 
-# Normality of errors
+# 4 The error terms are normally distributed
+
 hist(resid(model_full),
      xlab   = "Residuals",
-     main   = "Histogram of Residuals, Model Full",
-     col    = "darkorange",
-     border = "dodgerblue",
+     main   = "Histogram of Residuals, Full Model",
+     col    = "dodgerblue",
+     border = "black",
      breaks = 20)
 # It does have a rough bell shape, however, it also has a semi-sharp peak.
 
 # Q-Q Plot
-qqnorm(resid(model_full), main = "Normal Q-Q Plot, Model Full", col = "darkgrey")
+qqnorm(resid(model_full), main = "Normal Q-Q Plot, Full Model", col = "darkgrey")
 qqline(resid(model_full), col = "dodgerblue", lwd = 2)
 # Deviates in smaller quantiles
 # For Model Full, we have a suspect Q-Q plot. 
 # We would probably not believe the errors follow a normal distribution.
-
 
 # Shapiro-Wilk Test
 shapiro.test(resid(model_full))
 # p = 7.152e-05
 # A small p-value indicates we believe there is only a small probability 
 # the data could have been sampled from a normal distribution.
+
+# 5 There is no outlier in the data.
+# 6 There is no important predictor that have been omitted from the model
+
 
 
 # Diagnostic Checks - Model Reduced -------------------------------------------------------
@@ -446,52 +444,6 @@ shapiro.test(resid(model_red))
 # A small p-value indicates we believe there is only a small probability 
 # the data could have been sampled from a normal distribution.
 
-
-# Diagnostic Checks - Model Reduced Log --------------------------------------------
-
-# Model Summary and ANOVA
-summary(model_red_log)
-anova(model_red_log)
-
-# Model Reduced Log attempts to transform to log-scale
-# Fitted vs Residuals --- model_red_log
-plot(fitted(model_red_log),
-     resid(model_red_log),
-     col = "grey",
-     pch = 20,
-     xlab = "Fitted", ylab = "Residuals", main = "Data from Model Reduced Log")
-abline(h = 0, col = "darkorange", lwd = 2)
-# Looks like it has a inverse parabolic shape
-
-# Breusch-Pagan Test for Homoskedasticity
-bptest(model_red_log)
-# For model_red_log we see a small p-value, so we reject the null of homoscedasticity. 
-# The constant variance assumption is violated. 
-# This matches our findings with a fitted versus residuals plot.
-
-# Normality of errors
-hist(
-  resid(model_red_log),
-  xlab   = "Residuals",
-  main   = "Histogram of Residuals, Model 10",
-  col    = "darkorange",
-  border = "dodgerblue",
-  breaks = 20
-)
-# It does have a rough bell shape, however, it also has a very sharp peak.
-
-# Q-Q Plot
-qqnorm(resid(model_red_log), main = "Normal Q-Q Plot, Model Reduced Log", col = "darkgrey")
-qqline(resid(model_red_log), col = "dodgerblue", lwd = 2)
-# Deviates in smaller quantiles
-# For Model 11, we have a suspect Q-Q plot. 
-# We would probably not believe the errors follow a normal distribution.
-
-# Shapiro-Wilk Test
-shapiro.test(resid(model_red_log))
-# p = 7.822e-07
-# A small p-value indicates we believe there is only a small probability 
-# the data could have been sampled from a normal distribution.
 
 # Diagnostic Checks - Model Box Cox Full Transform -----------------------------
 
