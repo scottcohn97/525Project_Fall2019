@@ -10,6 +10,7 @@
 
 # Libraries ---------------------------------------------------------------
 
+library(dplyr)
 library(tidyverse) # duh.
 library(ggplot2) # plotting
 library(gridExtra) # plotting options
@@ -48,7 +49,7 @@ life_exp_full <- life_exp_full %>%
 topten_lifeexp_country <- life_exp_full %>%
   arrange(desc(`Life Expectancy`)) %>%
   slice(1:10) %>%
-  ggplot(aes(x = Country,
+  ggplot(aes(x = reorder(Country, `Life Expectancy`),
              y = `Life Expectancy`)) +
   geom_bar(stat = 'identity',
            fill = "#1380A1") +
@@ -90,7 +91,7 @@ bottomten_lifeexp_country <- life_exp_full %>%
   drop_na(`Life Expectancy`) %>%
   arrange(desc(`Life Expectancy`)) %>%
   slice(192:201) %>%
-  ggplot(aes(x = Country,
+  ggplot(aes(x = reorder(Country, -`Life Expectancy`),
              y = `Life Expectancy`)) +
   geom_bar(stat = 'identity',
            fill = "#1380A1") +
@@ -156,14 +157,18 @@ finalise_plot(plot_name = lifeexp_distro,
 life_exp_full %>%
   ggplot(aes(x = `Birth Rate`,
              y = `Life Expectancy`)) +
+             xlab("Birth Rate per 1000 People") +       #RK I tried labelling these axes multiple times, not sure why it isn't showing up? 
+             ylab("Life Expectancy") + 
   geom_point(color = "#1380A1") +
   geom_hline(yintercept = 0,
              size = 1,
              color = "#333333") +
   #scale_color_d3() +
   bbc_style() +
-  labs(title = "How long do we expect to live?",
-       subtitle = "Birth Rate vs. Life Expectancy") 
+  labs(title = "How long can we expect to live?",
+       subtitle = "Birth Rate vs. Life Expectancy",
+       ylab = "Life Expectancy",
+       xlab = "Births Per 1000 People") 
 
 # Life vs Cancer
 life_exp_full %>%
@@ -398,9 +403,17 @@ shapiro.test(resid(model_full))
 # A small p-value indicates we believe there is only a small probability 
 # the data could have been sampled from a normal distribution.
 
-# 5 There is no outlier in the data.
-# 6 There is no important predictor that have been omitted from the model
+#RK 5 Outlier Check Via Boxplots- how should we deal with those outliers? Which countries are they? 
+outlierAssumption <- ggplot(model_full, aes(x=fitted(model_full), y=resid(model_full))) + 
+  geom_boxplot() + 
+  coord_flip()
+outlierAssumption
 
+# 6 There is no important predictor that have been omitted from the model
+# RK I think for this one since she's just looking for a logical explanation, we can say
+# that there very well maybe be other factors that are contributing to the life expectancy 
+# of a country, but it is impossible to state them all. I'm going to put a better explanation
+# and possible alternative predictors in the actual paper. 
 
 
 # Diagnostic Checks - Model Reduced -------------------------------------------------------
