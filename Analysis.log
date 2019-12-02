@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.17)  2 DEC 2019 11:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.17)  2 DEC 2019 11:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -464,6 +464,34 @@ LaTeX Info: Redefining \nameref on input line 76.
 \@outlinefile=\write3
 \openout3 = `Analysis.out'.
 
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 85.
+
+(/Users/scottcohn/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1pplx.fd
+File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
+)
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 85.
+
+(/Users/scottcohn/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlzplm.fd
+File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
+)
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 85.
+
+(/Users/scottcohn/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omszplm.fd
+File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
+)
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 85.
+
+(/Users/scottcohn/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omxzplm.fd
+File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
+)
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 85.
+
+(/Users/scottcohn/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1zplm.fd
+File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
+)
+
+LaTeX Warning: No \author given.
+
 Package color Info: Redefining color shadecolor on input line 88.
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 89.
 (/Users/scottcohn/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
@@ -471,159 +499,159 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 95.
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 179
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 135
 .
 (/Users/scottcohn/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
 
 {/Users/scottcohn/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-] [2]
-<figure/Analysis-Rnwauto-report-1.pdf, id=18, 433.62pt x 433.62pt>
+]
+<figure/Analysis-Rnwauto-report-1.pdf, id=13, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-1.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-1.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-1.pdf  used on input li
-ne 218.
+ne 174.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[3]
-Underfull \vbox (badness 3471) detected at line 267
+[2]
+Underfull \vbox (badness 3471) detected at line 223
  []
 
-[4 <./figure/Analysis-Rnwauto-report-1.pdf>]
-<figure/Analysis-Rnwauto-report-2.pdf, id=37, 433.62pt x 433.62pt>
+[3 <./figure/Analysis-Rnwauto-report-1.pdf>]
+<figure/Analysis-Rnwauto-report-2.pdf, id=33, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-2.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-2.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-2.pdf  used on input li
-ne 269.
+ne 225.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[5 <./figure/Analysis-Rnwauto-report-2.pdf>]
-<figure/Analysis-Rnwauto-report-3.pdf, id=51, 433.62pt x 433.62pt>
+[4 <./figure/Analysis-Rnwauto-report-2.pdf>]
+<figure/Analysis-Rnwauto-report-3.pdf, id=47, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-3.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-3.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-3.pdf  used on input li
-ne 308.
+ne 264.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
 
-Overfull \hbox (259.45276pt too wide) in paragraph at lines 320--320
+Overfull \hbox (259.45276pt too wide) in paragraph at lines 276--276
 []             []\T1/lmtt/b/n/10 xlab[][]\T1/lmtt/m/n/10 ([][]"Birth Rate per 1
 000 People"[][])[] []+[]       []\T1/lmtt/m/it/10 #RK I tried labelling these a
 xes multiple times, not sure why it isn\TS1/lmtt/m/it/10 '\T1/lmtt/m/it/10 t sh
 owing up? [][] 
  []
 
-[6 <./figure/Analysis-Rnwauto-report-3.pdf>]
-<figure/Analysis-Rnwauto-report-4.pdf, id=65, 433.62pt x 433.62pt>
+[5 <./figure/Analysis-Rnwauto-report-3.pdf>]
+<figure/Analysis-Rnwauto-report-4.pdf, id=61, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-4.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-4.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-4.pdf  used on input li
-ne 337.
+ne 293.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-<figure/Analysis-Rnwauto-report-5.pdf, id=66, 433.62pt x 433.62pt>
+<figure/Analysis-Rnwauto-report-5.pdf, id=62, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-5.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-5.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-5.pdf  used on input li
-ne 360.
+ne 316.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[7 <./figure/Analysis-Rnwauto-report-4.pdf>]
-<figure/Analysis-Rnwauto-report-6.pdf, id=79, 433.62pt x 433.62pt>
+[6 <./figure/Analysis-Rnwauto-report-4.pdf>]
+<figure/Analysis-Rnwauto-report-6.pdf, id=74, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-6.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-6.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-6.pdf  used on input li
-ne 371.
+ne 327.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[8 <./figure/Analysis-Rnwauto-report-5.pdf> <./figure/Analysis-Rnwauto-report-6
+[7 <./figure/Analysis-Rnwauto-report-5.pdf> <./figure/Analysis-Rnwauto-report-6
 .pdf>]
-<figure/Analysis-Rnwauto-report-7.pdf, id=97, 433.62pt x 433.62pt>
+<figure/Analysis-Rnwauto-report-7.pdf, id=93, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-7.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-7.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-7.pdf  used on input li
-ne 402.
+ne 358.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[9 <./figure/Analysis-Rnwauto-report-7.pdf>]
-<figure/Analysis-Rnwauto-report-8.pdf, id=111, 433.62pt x 433.62pt>
+[8 <./figure/Analysis-Rnwauto-report-7.pdf>]
+<figure/Analysis-Rnwauto-report-8.pdf, id=107, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-8.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-8.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-8.pdf  used on input li
-ne 427.
+ne 383.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-<figure/Analysis-Rnwauto-report-9.pdf, id=112, 433.62pt x 433.62pt>
+<figure/Analysis-Rnwauto-report-9.pdf, id=108, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-9.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-9.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-9.pdf  used on input li
-ne 450.
+ne 406.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[10 <./figure/Analysis-Rnwauto-report-8.pdf>]
-<figure/Analysis-Rnwauto-report-10.pdf, id=124, 433.62pt x 433.62pt>
+[9 <./figure/Analysis-Rnwauto-report-8.pdf>]
+<figure/Analysis-Rnwauto-report-10.pdf, id=120, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-10.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-10.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-10.pdf  used on input l
-ine 470.
+ine 426.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[11 <./figure/Analysis-Rnwauto-report-9.pdf>]
-<figure/Analysis-Rnwauto-report-11.pdf, id=136, 433.62pt x 433.62pt>
+[10 <./figure/Analysis-Rnwauto-report-9.pdf>]
+<figure/Analysis-Rnwauto-report-11.pdf, id=132, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-11.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-11.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-11.pdf  used on input l
-ine 485.
+ine 441.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[12 <./figure/Analysis-Rnwauto-report-10.pdf>]
-<figure/Analysis-Rnwauto-report-12.pdf, id=147, 433.62pt x 433.62pt>
+[11 <./figure/Analysis-Rnwauto-report-10.pdf>]
+<figure/Analysis-Rnwauto-report-12.pdf, id=143, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-12.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-12.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-12.pdf  used on input l
-ine 503.
+ine 459.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[13 <./figure/Analysis-Rnwauto-report-11.pdf>]
-<figure/Analysis-Rnwauto-report-13.pdf, id=160, 433.62pt x 433.62pt>
+[12 <./figure/Analysis-Rnwauto-report-11.pdf>]
+<figure/Analysis-Rnwauto-report-13.pdf, id=155, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-13.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-13.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-13.pdf  used on input l
-ine 518.
+ine 474.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[14 <./figure/Analysis-Rnwauto-report-12.pdf>]
-<figure/Analysis-Rnwauto-report-14.pdf, id=171, 433.62pt x 433.62pt>
+[13 <./figure/Analysis-Rnwauto-report-12.pdf>]
+<figure/Analysis-Rnwauto-report-14.pdf, id=167, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-14.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-14.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-14.pdf  used on input l
-ine 536.
+ine 492.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[15 <./figure/Analysis-Rnwauto-report-13.pdf>]
-<figure/Analysis-Rnwauto-report-15.pdf, id=182, 433.62pt x 433.62pt>
+[14 <./figure/Analysis-Rnwauto-report-13.pdf>]
+<figure/Analysis-Rnwauto-report-15.pdf, id=178, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-15.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-15.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-15.pdf  used on input l
-ine 551.
+ine 507.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[16 <./figure/Analysis-Rnwauto-report-14.pdf>]
-<figure/Analysis-Rnwauto-report-16.pdf, id=193, 433.62pt x 433.62pt>
+[15 <./figure/Analysis-Rnwauto-report-14.pdf>]
+<figure/Analysis-Rnwauto-report-16.pdf, id=189, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-16.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-16.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-16.pdf  used on input l
-ine 569.
+ine 525.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[17 <./figure/Analysis-Rnwauto-report-15.pdf>]
-<figure/Analysis-Rnwauto-report-17.pdf, id=204, 433.62pt x 433.62pt>
+[16 <./figure/Analysis-Rnwauto-report-15.pdf>]
+<figure/Analysis-Rnwauto-report-17.pdf, id=200, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-17.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-17.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-17.pdf  used on input l
-ine 587.
+ine 543.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[18 <./figure/Analysis-Rnwauto-report-16.pdf>]
-<figure/Analysis-Rnwauto-report-18.pdf, id=215, 433.62pt x 433.62pt>
+[17 <./figure/Analysis-Rnwauto-report-16.pdf>]
+<figure/Analysis-Rnwauto-report-18.pdf, id=211, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-18.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-18.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-18.pdf  used on input l
-ine 605.
+ine 561.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[19 <./figure/Analysis-Rnwauto-report-17.pdf>]
-<figure/Analysis-Rnwauto-report-19.pdf, id=227, 433.62pt x 433.62pt>
+[18 <./figure/Analysis-Rnwauto-report-17.pdf>]
+<figure/Analysis-Rnwauto-report-19.pdf, id=222, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-19.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-19.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-19.pdf  used on input l
-ine 623.
+ine 579.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[20 <./figure/Analysis-Rnwauto-report-18.pdf>]
-Overfull \hbox (189.46684pt too wide) in paragraph at lines 632--632
+[19 <./figure/Analysis-Rnwauto-report-18.pdf>]
+Overfull \hbox (189.46684pt too wide) in paragraph at lines 588--588
 []  []\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 Life Expectancy\TS1/lmtt/m/n/10 `[] []\
 T1/lmtt/m/n/10 ~[] []\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 Birth Rate\TS1/lmtt/m/n/
 10 `[] []\T1/lmtt/m/n/10 +[] []\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 Cancer Rate\TS
@@ -634,203 +662,103 @@ tt/m/n/10 `\T1/lmtt/m/n/10 Health Expenditure\TS1/lmtt/m/n/10 `[] []\T1/lmtt/m/
 n/10 +[] []EPI[] []+[] []GDP,[][] 
  []
 
-
-Overfull \hbox (7.45349pt too wide) in paragraph at lines 641--641
-[][]\T1/lmtt/m/it/10 #    model to avoid "models were not all fitted to the sam
-e size of dataset" error in ANOVA[][] 
- []
-
-<figure/Analysis-Rnwauto-report-20.pdf, id=238, 433.62pt x 433.62pt>
+[20 <./figure/Analysis-Rnwauto-report-19.pdf>] [21]
+<figure/Analysis-Rnwauto-report-20.pdf, id=248, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-20.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-20.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-20.pdf  used on input l
-ine 649.
+ine 687.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[21 <./figure/Analysis-Rnwauto-report-19.pdf>]
-Overfull \hbox (178.96687pt too wide) in paragraph at lines 659--659
-[]    []\T1/lmtt/m/n/10 transform_bc_y[] []~[] []\TS1/lmtt/m/n/10 `\T1/lmtt/m/n
-/10 Birth Rate\TS1/lmtt/m/n/10 `[] []\T1/lmtt/m/n/10 +[] []\TS1/lmtt/m/n/10 `\T
-1/lmtt/m/n/10 Cancer Rate\TS1/lmtt/m/n/10 `[] []\T1/lmtt/m/n/10 +[] []\TS1/lmtt
-/m/n/10 `\T1/lmtt/m/n/10 Heart Disease Rate\TS1/lmtt/m/n/10 `[] []\T1/lmtt/m/n/
-10 +[] []\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 Stroke Rate\TS1/lmtt/m/n/10 `[] []\T
-1/lmtt/m/n/10 +[] []\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 Health Expenditure\TS1/lm
-tt/m/n/10 `[] []\T1/lmtt/m/n/10 +[] []EPI[] []+[] []GDP,[][] 
- []
-
-
-Overfull \hbox (91.45325pt too wide) in paragraph at lines 662--662
-[][]\T1/lmtt/m/it/10 # Here we see that lambda = 4.5 is both in the confidence 
-interval, and is extremely close to the maximum. [][] 
- []
-
-
-Overfull \hbox (2.2035pt too wide) in paragraph at lines 663--663
-[][]\T1/lmtt/m/it/10 # This suggests a transformation of $\frac{y^\lamba - 1}{\
-lambda} = \frac{y^4.5 - 1}{4.5}$[][] 
- []
-
-[22 <./figure/Analysis-Rnwauto-report-20.pdf>] [23]
-<figure/Analysis-Rnwauto-report-21.pdf, id=263, 433.62pt x 433.62pt>
+[22 <./figure/Analysis-Rnwauto-report-20.pdf>]
+<figure/Analysis-Rnwauto-report-21.pdf, id=260, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-21.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-21.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-21.pdf  used on input l
-ine 761.
+ine 725.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[24 <./figure/Analysis-Rnwauto-report-21.pdf>]
-<figure/Analysis-Rnwauto-report-22.pdf, id=275, 433.62pt x 433.62pt>
+<figure/Analysis-Rnwauto-report-22.pdf, id=261, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-22.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-22.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-22.pdf  used on input l
-ine 799.
+ine 739.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-<figure/Analysis-Rnwauto-report-23.pdf, id=276, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-23.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-23.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-23.pdf  used on input l
-ine 813.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[25 <./figure/Analysis-Rnwauto-report-22.pdf>]
-Overfull \hbox (54.70335pt too wide) in paragraph at lines 838--838
+[23 <./figure/Analysis-Rnwauto-report-21.pdf>]
+Overfull \hbox (54.70335pt too wide) in paragraph at lines 764--764
 [][]\T1/lmtt/m/it/10 #RK 5 Outlier Check Via Boxplots- how should we deal with 
 those outliers? Which countries are they? [][] 
  []
 
-<figure/Analysis-Rnwauto-report-24.pdf, id=288, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-24.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-24.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-24.pdf  used on input l
-ine 848.
+<figure/Analysis-Rnwauto-report-23.pdf, id=272, 433.62pt x 433.62pt>
+File: figure/Analysis-Rnwauto-report-23.pdf Graphic file (type pdf)
+<use figure/Analysis-Rnwauto-report-23.pdf>
+Package pdftex.def Info: figure/Analysis-Rnwauto-report-23.pdf  used on input l
+ine 774.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[26 <./figure/Analysis-Rnwauto-report-23.pdf>]
-Overfull \hbox (7.45349pt too wide) in paragraph at lines 856--856
+[24 <./figure/Analysis-Rnwauto-report-22.pdf>]
+Overfull \hbox (7.45349pt too wide) in paragraph at lines 782--782
 [][]\T1/lmtt/m/it/10 # that there very well maybe be other factors that are con
 tributing to the life expectancy [][] 
  []
 
 
-Overfull \hbox (17.95346pt too wide) in paragraph at lines 857--857
+Overfull \hbox (17.95346pt too wide) in paragraph at lines 783--783
 [][]\T1/lmtt/m/it/10 # of a country, but it is impossible to state them all. I\
 TS1/lmtt/m/it/10 '\T1/lmtt/m/it/10 m going to put a better explanation[][] 
  []
 
 
-Overfull \hbox (7.45349pt too wide) in paragraph at lines 861--861
+Overfull \hbox (7.45349pt too wide) in paragraph at lines 787--787
 [][]\T1/lmtt/m/it/10 # Diagnostic Checks - Model Reduced ----------------------
 ---------------------------------[][] 
  []
 
-[27 <./figure/Analysis-Rnwauto-report-24.pdf>]
-<figure/Analysis-Rnwauto-report-25.pdf, id=311, 433.62pt x 433.62pt>
+[25 <./figure/Analysis-Rnwauto-report-23.pdf>]
+<figure/Analysis-Rnwauto-report-24.pdf, id=296, 433.62pt x 433.62pt>
+File: figure/Analysis-Rnwauto-report-24.pdf Graphic file (type pdf)
+<use figure/Analysis-Rnwauto-report-24.pdf>
+Package pdftex.def Info: figure/Analysis-Rnwauto-report-24.pdf  used on input l
+ine 842.
+(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
+[26 <./figure/Analysis-Rnwauto-report-24.pdf>]
+<figure/Analysis-Rnwauto-report-25.pdf, id=308, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-25.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-25.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-25.pdf  used on input l
-ine 916.
+ine 875.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[28 <./figure/Analysis-Rnwauto-report-25.pdf>]
-<figure/Analysis-Rnwauto-report-26.pdf, id=323, 433.62pt x 433.62pt>
+<figure/Analysis-Rnwauto-report-26.pdf, id=309, 433.62pt x 433.62pt>
 File: figure/Analysis-Rnwauto-report-26.pdf Graphic file (type pdf)
 <use figure/Analysis-Rnwauto-report-26.pdf>
 Package pdftex.def Info: figure/Analysis-Rnwauto-report-26.pdf  used on input l
-ine 949.
+ine 889.
 (pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-<figure/Analysis-Rnwauto-report-27.pdf, id=324, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-27.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-27.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-27.pdf  used on input l
-ine 963.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[29 <./figure/Analysis-Rnwauto-report-26.pdf>] [30 <./figure/Analysis-Rnwauto-r
-eport-27.pdf>]
-<figure/Analysis-Rnwauto-report-28.pdf, id=346, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-28.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-28.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-28.pdf  used on input l
-ine 1058.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[31]
-<figure/Analysis-Rnwauto-report-29.pdf, id=352, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-29.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-29.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-29.pdf  used on input l
-ine 1099.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[32 <./figure/Analysis-Rnwauto-report-28.pdf>]
-<figure/Analysis-Rnwauto-report-30.pdf, id=364, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-30.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-30.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-30.pdf  used on input l
-ine 1131.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[33 <./figure/Analysis-Rnwauto-report-29.pdf>]
-Overfull \hbox (63.46721pt too wide) in paragraph at lines 1140--1140
-[][]\T1/lmtt/b/n/10 qqnorm[][]\T1/lmtt/m/n/10 ([][]\T1/lmtt/b/n/10 resid[][]\T1
-/lmtt/m/n/10 (model_bc_full_transform),[] []main[] []=[] []"Normal Q-Q Plot, Mo
-del Box Cox Full"[][],[] []col[] []=[] []"darkgrey"[][])[][] 
- []
+[27 <./figure/Analysis-Rnwauto-report-25.pdf>]
+Package color Info: Redefining color shadecolor on input line 924.
 
-<figure/Analysis-Rnwauto-report-31.pdf, id=375, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-31.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-31.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-31.pdf  used on input l
-ine 1145.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[34 <./figure/Analysis-Rnwauto-report-30.pdf> <./figure/Analysis-Rnwauto-report
--31.pdf>]
-<figure/Analysis-Rnwauto-report-32.pdf, id=393, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-32.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-32.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-32.pdf  used on input l
-ine 1166.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-<figure/Analysis-Rnwauto-report-33.pdf, id=394, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-33.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-33.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-33.pdf  used on input l
-ine 1184.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-[35 <./figure/Analysis-Rnwauto-report-32.pdf>] [36 <./figure/Analysis-Rnwauto-r
-eport-33.pdf>]
-<figure/Analysis-Rnwauto-report-34.pdf, id=415, 433.62pt x 433.62pt>
-File: figure/Analysis-Rnwauto-report-34.pdf Graphic file (type pdf)
-<use figure/Analysis-Rnwauto-report-34.pdf>
-Package pdftex.def Info: figure/Analysis-Rnwauto-report-34.pdf  used on input l
-ine 1232.
-(pdftex.def)             Requested size: 283.22162pt x 283.23251pt.
-
-Overfull \hbox (5.71738pt too wide) in paragraph at lines 1290--1290
-[][]\T1/lmtt/b/n/10 qqnorm[][]\T1/lmtt/m/n/10 ([][]\T1/lmtt/b/n/10 resid[][]\T1
-/lmtt/m/n/10 (model_bc_red_transform),[] []main[] []=[] []"Normal Q-Q Plot, Mod
-el 13"[][],[] []col[] []=[] []"darkgrey"[][])[][] 
- []
-
-[37 <./figure/Analysis-Rnwauto-report-34.pdf>] [38]
-Package color Info: Redefining color shadecolor on input line 1356.
-
-Overfull \hbox (168.4669pt too wide) in paragraph at lines 1398--1398
+Overfull \hbox (168.4669pt too wide) in paragraph at lines 966--966
 []\T1/lmtt/m/n/10 ## BLAS:   /System/Library/Frameworks/Accelerate.framework/Ve
 rsions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib[] 
  []
 
-[39]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1409.
-[40]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1409.
+[28 <./figure/Analysis-Rnwauto-report-26.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 977.
+[29]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 977.
 (./Analysis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1409.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1409.
-
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 977.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 977.
 Package rerunfilecheck Info: File `Analysis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1409.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 977.
  ) 
 Here is how much of TeX's memory you used:
- 9434 strings out of 494553
- 139228 string characters out of 6176379
- 212672 words of memory out of 5000000
- 12967 multiletter control sequences out of 15000+600000
- 8601 words of font info for 23 fonts, out of 8000000 for 9000
+ 9463 strings out of 494553
+ 138917 string characters out of 6176379
+ 211108 words of memory out of 5000000
+ 12993 multiletter control sequences out of 15000+600000
+ 18975 words of font info for 42 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 28i,5n,25p,671b,375s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,6n,25p,671b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/scottcohn/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/
 Users/scottcohn/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users
 /scottcohn/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}</Users/scott
@@ -838,10 +766,10 @@ cohn/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></Users/scottc
 ohn/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></Users/scottco
 hn/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb></Users/scottco
 hn/Library/TinyTeX/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on Analysis.pdf (40 pages, 308871 bytes).
+Output written on Analysis.pdf (29 pages, 256134 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 347 compressed objects within 4 object streams
- 41 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 362 PDF objects out of 1000 (max. 8388607)
+ 264 compressed objects within 3 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 131 words of extra memory for PDF output out of 10000 (max. 10000000)
 
