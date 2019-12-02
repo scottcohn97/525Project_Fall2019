@@ -1,13 +1,6 @@
 # Analysis
 # Scott Cohn + Ruja Kambli
 
-# This file is structured in collapsible sections. 
-
-# plot indiv value vs e to transofrom indiv variable
-# Try again without outliers (remove China / US) --> MAKES NO DIFFERENCE!
-# Drop Cancer --> MAKES NO DIFFERENCE! 
-# Recheck heart disease --> MAKES NO DIFFERENCE! 
-
 # Libraries ---------------------------------------------------------------
 
 library(dplyr)
@@ -323,26 +316,6 @@ model_full <- lm(
   data = life_exp_full
 )
 
-model_red <- lm(
-    `Life Expectancy` ~ `Birth Rate` + `Stroke Rate` +  `Health Expenditure` + EPI + GDP,
-    data = model_full$model)
-# Has violations of assumptions (see below)
-# Note: data = model_full$model in reduced 
-#    model to avoid "models were not all fitted to the same size of dataset" error in ANOVA
-
-
-# Model BC Full --- Box-Cox Full Transform
-boxcox(model_full, plotit = TRUE, lambda = seq(3, 5, by = 0.1))
-transform_bc_y <- ((life_exp_full$`Life Expectancy`)^4.4 - 1)/4.5
-
-model_bc_full_transform <-
-  lm(
-    transform_bc_y ~ `Birth Rate` + `Cancer Rate` + `Heart Disease Rate` + `Stroke Rate` + `Health Expenditure` + EPI + GDP,
-    data = life_exp_full
-  )
-# Here we see that lambda = 4.5 is both in the confidence interval, and is extremely close to the maximum. 
-# This suggests a transformation of $\frac{y^\lamba - 1}{\lambda} = \frac{y^4.5 - 1}{4.5}$
-
 # Testing Model Fit -------------------------------------------------------
 
 # compare model full and model reduced.
@@ -352,7 +325,6 @@ anova(model_red, model_full)
 # Failed to reject H0: that removed var are zero.
 
 # Diagnostic Checks - Model Full -------------------------------------------
-
 
 # Model Summary and ANOVA
 summary(model_full)
@@ -456,176 +428,6 @@ shapiro.test(resid(model_red))
 # p = 7.152e-05
 # A small p-value indicates we believe there is only a small probability 
 # the data could have been sampled from a normal distribution.
-
-
-# Diagnostic Checks - Model Box Cox Full Transform -----------------------------
-
-# Model Summary and ANOVA
-summary(model_bc_full_transform)
-anova(model_bc_full_transform)
-
-# Fitted vs Residuals
-plot(
-  fitted(model_bc_full_transform),
-  resid(model_bc_full_transform),
-  col = "grey",
-  pch = 20,
-  xlab = "Fitted",
-  ylab = "Residuals",
-  main = "Data, Model Box Cox Full"
-)
-abline(h = 0, col = "darkorange", lwd = 2)
-# Looks random so all set
-
-# Breusch-Pagan
-bptest(model_bc_full_transform)
-# pass -- FTR null of homosked.
-
-# Shapiro-Wilks
-shapiro.test(resid(model_bc_full_transform))
-# pass
-# A large p-value indicates we believe it is likely
-# the data could have been sampled from a normal distribution.
-
-# Box-cox
-boxcox(model_bc_full_transform)
-# pass
-
-# Variation Inflation Factor
-vif(model_bc_full_transform)
-# All <5 so no multicollinearity problems
-
-# Normality of errors
-hist(
-  resid(model_bc_full_transform),
-  xlab   = "Residuals",
-  main   = "Histogram of Residuals, Model Box Cox Full",
-  col    = "darkorange",
-  border = "dodgerblue",
-  breaks = 20
-)
-# It does have a rough bell shape. Looks Good.
-
-# Q-Q Plot
-qqnorm(resid(model_bc_full_transform), main = "Normal Q-Q Plot, Model Box Cox Full", col = "darkgrey")
-qqline(resid(model_bc_full_transform), col = "dodgerblue", lwd = 2)
-# Deviates in slightly smaller quantiles
-# For Model BC, we have an okay Q-Q plot. 
-# We would probably believe the errors follow a mostly normal distribution.
-
-# Linearity 
-plot(
-  transform_bc_y ~ `Birth Rate`,
-  data = life_exp_full,
-  col = "dodgerblue",
-  pch = 20,
-  cex = 1.5
-)
-# Linear (-)
-
-plot(
-  transform_bc_y ~ `Stroke Rate`,
-  data = life_exp_full,
-  col = "dodgerblue",
-  pch = 20,
-  cex = 1.5
-)
-# Linear (-) ish --- looks like it flairs out
-
-plot(
-  transform_bc_y ~ EPI,
-  data = life_exp_full,
-  col = "dodgerblue",
-  pch = 20,
-  cex = 1.5
-)
-# Linear (+)
-
-# Diagnostic Checks - Model Box Cox Reduced Transform -----------------------------
-
-# Model Summary and ANOVA
-summary(model_bc_red_transform)
-anova(model_bc_red_transform)
-
-# Fitted vs Residuals
-plot(
-  fitted(model_bc_red_transform),
-  resid(model_bc_red_transform),
-  col = "grey",
-  pch = 20,
-  xlab = "Fitted",
-  ylab = "Residuals",
-  main = "Data from Model 10"
-)
-abline(h = 0, col = "darkorange", lwd = 2)
-# Looks random so all set
-
-# Breusch-Pagan
-bptest(model_bc_red_transform)
-# pass -- FTR null of homosked.
-
-# Shapiro-Wilks
-shapiro.test(resid(model_bc_red_transform))
-# pass
-# A large p-value indicates we believe it is likely
-# the data could have been sampled from a normal distribution.
-
-# Box-cox
-boxcox(model_bc_red_transform)
-# pass
-
-# Variation Inflation Factor
-vif(model_bc_red_transform)
-# All <5 so no multicollinearity problems
-
-# Normality of errors
-hist(
-  resid(model_bc_red_transform),
-  xlab   = "Residuals",
-  main   = "Histogram of Residuals, Model 10",
-  col    = "darkorange",
-  border = "dodgerblue",
-  breaks = 20
-)
-# It does have a rough bell shape. Looks Good.
-
-# Q-Q Plot
-qqnorm(resid(model_bc_red_transform), main = "Normal Q-Q Plot, Model 13", col = "darkgrey")
-qqline(resid(model_bc_red_transform), col = "dodgerblue", lwd = 2)
-# Deviates in slightly smaller quantiles
-# For Model BC, we have an okay Q-Q plot. 
-# We would probably believe the errors follow a mostly normal distribution.
-
-# Linearity 
-plot(
-  transform_bc_red_y ~ `Birth Rate`,
-  data = life_exp_full,
-  col = "dodgerblue",
-  pch = 20,
-  cex = 1.5
-)
-# Linear (-)
-
-plot(
-  transform_bc_red_y ~ `Stroke Rate`,
-  data = life_exp_full,
-  col = "dodgerblue",
-  pch = 20,
-  cex = 1.5
-)
-# Linear (-) ish --- looks like it flairs out
-
-plot(
-  transform_bc_red_y ~ EPI,
-  data = life_exp_full,
-  col = "dodgerblue",
-  pch = 20,
-  cex = 1.5
-)
-# Linear (+)
-
-
-
 
 # End of File -------------------------------------------------------------
 
